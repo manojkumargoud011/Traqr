@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Sparkles, FileText, Copy, Check, Zap, Loader } from 'lucide-react';
-import { summarizeJD, calculateMatchScore, generateCoverLetter } from '../utils/aihelper';
+import { summarizeJD, calculateMatchScore, generateCoverLetter } from '../utils/aiHelper';
 import { useJobs } from '../context/JobContext';
 
 // ─── Loading Spinner ──────────────────────────────────────────────────────────

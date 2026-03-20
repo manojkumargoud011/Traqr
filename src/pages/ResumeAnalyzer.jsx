@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FileText, Sparkles, CheckCircle, AlertCircle, Upload, Loader, ArrowRight } from 'lucide-react';
-import { analyzeResume } from '../utils/aihelper';
+import { analyzeResume } from '../utils/aiHelper';
 
 function AILoader({ text }) {
   return (

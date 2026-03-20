@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { LayoutDashboard, Plus, Moon, Sun, Briefcase, Bell, Kanban, Sparkles, FileText, Users, Brain, Download, LogOut } from 'lucide-react';
 import { useJobs } from '../context/JobContext';
 import { getDueReminders } from '../utils/helpers';
-import { exportToCSV } from '../utils/aihelper';
+import { exportToCSV } from '../utils/aiHelper';
 import { useMemo } from 'react';
 
 export default function Navbar() {

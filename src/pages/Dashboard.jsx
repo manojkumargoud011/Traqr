@@ -16,7 +16,7 @@ import {
   generateTips,
   generateSmartInsights,
   suggestRoles,
-} from '../utils/aihelper';
+} from '../utils/aiHelper';
 
 export default function Dashboard() {
   const { jobs } = useJobs();

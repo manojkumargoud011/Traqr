@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { useJobs } from '../context/JobContext';
 import { STATUS_OPTIONS, todayISO } from '../utils/helpers';
-import { rewriteNotes, scoreApplicationStrength } from '../utils/aihelper';
+import { rewriteNotes, scoreApplicationStrength } from '../utils/aiHelper';
 
 const EMPTY_FORM = {
   company: '',

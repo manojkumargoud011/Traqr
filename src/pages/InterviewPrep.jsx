@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Plus, Trash2, ChevronDown, ChevronUp, Brain, X, Save, Sparkles, Loader } from 'lucide-react';
 import { useJobs } from '../context/JobContext';
-import { generateInterviewQuestions } from '../utils/aihelper';
+import { generateInterviewQuestions } from '../utils/aiHelper';
 
 const ROUNDS = ['HR Screen', 'Technical', 'System Design', 'Behavioral', 'Take-Home', 'Final', 'Other'];
 
