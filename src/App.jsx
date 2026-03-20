@@ -3,15 +3,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { JobProvider, useJobs } from './context/JobContext';
 import Navbar, { MobileNav } from './components/Navbar';
 import Login from './pages/Login';
-
-// Pages
 import Dashboard from './pages/Dashboard';
 import AddJob from './pages/AddJob';
 import JobDetails from './pages/JobDetails';
 import AllJobs from './pages/AllJobs';
 import RemindersPage from './pages/Reminders';
 import KanbanBoard from './pages/KanbanBoard';
-import AITools from './pages/AITools';
+import AITools from './pages/aiTools';
 import ResumeAnalyzer from './pages/ResumeAnalyzer';
 import InterviewPrep from './pages/InterviewPrep';
 import NetworkingTracker from './pages/NetworkingTracker';
