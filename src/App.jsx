@@ -9,7 +9,7 @@ import JobDetails from './pages/JobDetails';
 import AllJobs from './pages/AllJobs';
 import RemindersPage from './pages/Reminders';
 import KanbanBoard from './pages/KanbanBoard';
-import AITools from './pages/aiTools';
+import AITools from './pages/AITools';
 import ResumeAnalyzer from './pages/ResumeAnalyzer';
 import InterviewPrep from './pages/InterviewPrep';
 import NetworkingTracker from './pages/NetworkingTracker';
