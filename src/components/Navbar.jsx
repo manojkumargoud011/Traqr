@@ -130,40 +130,93 @@ export function MobileNav() {
   const { toggleDarkMode, darkMode, jobs, dismissedReminders } = useJobs();
 
   const dueCount = useMemo(() => {
-    return getDueReminders(jobs).filter(j => !dismissedReminders.includes(j.id)).length;
+    return getDueReminders(jobs).filter(
+      j => !dismissedReminders.includes(j.id)
+    ).length;
   }, [jobs, dismissedReminders]);
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white dark:bg-ink-900 border-t border-ink-100 dark:border-ink-800 px-2 py-2">
-      <div className="flex justify-around items-center">
+    <>
+      {/* Dark Mode Button — Fixed Top Right */}
+      <button
+        onClick={toggleDarkMode}
+        className="fixed top-4 right-4 z-50 md:hidden w-9 h-9 rounded-xl bg-white dark:bg-ink-800 border border-ink-200 dark:border-ink-700 shadow-md flex items-center justify-center text-ink-500 dark:text-amber-400 transition-all"
+      >
+        {darkMode
+          ? <Sun className="w-4 h-4" />
+          : <Moon className="w-4 h-4" />
+        }
+      </button>
 
-        <NavLink to="/" end className={({ isActive }) => `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-medium ${isActive ? 'text-ink-900 dark:text-amber-400' : 'text-ink-400'}`}>
-          <LayoutDashboard className="w-5 h-5" />
-          Home
-        </NavLink>
+      {/* Bottom Nav — Same as before */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white dark:bg-ink-900 border-t border-ink-100 dark:border-ink-800 px-2 py-2">
+        <div className="flex justify-around items-center">
 
-        <NavLink to="/jobs" className={({ isActive }) => `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-medium ${isActive ? 'text-ink-900 dark:text-amber-400' : 'text-ink-400'}`}>
-          <Briefcase className="w-5 h-5" />
-          Jobs
-        </NavLink>
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) =>
+              `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-medium ${
+                isActive
+                  ? 'text-ink-900 dark:text-amber-400'
+                  : 'text-ink-400'
+              }`
+            }
+          >
+            <LayoutDashboard className="w-5 h-5" />
+            Home
+          </NavLink>
 
-        <NavLink to="/add" className="flex flex-col items-center gap-1">
-          <div className="w-11 h-11 rounded-2xl bg-ink-900 dark:bg-amber-400 flex items-center justify-center -mt-4 shadow-lg">
-            <Plus className="w-5 h-5 text-white dark:text-ink-950" />
-          </div>
-        </NavLink>
+          <NavLink
+            to="/jobs"
+            className={({ isActive }) =>
+              `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-medium ${
+                isActive
+                  ? 'text-ink-900 dark:text-amber-400'
+                  : 'text-ink-400'
+              }`
+            }
+          >
+            <Briefcase className="w-5 h-5" />
+            Jobs
+          </NavLink>
 
-        <NavLink to="/kanban" className={({ isActive }) => `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-medium ${isActive ? 'text-ink-900 dark:text-amber-400' : 'text-ink-400'}`}>
-          <Kanban className="w-5 h-5" />
-          Board
-        </NavLink>
+          <NavLink to="/add" className="flex flex-col items-center gap-1">
+            <div className="w-11 h-11 rounded-2xl bg-ink-900 dark:bg-amber-400 flex items-center justify-center -mt-4 shadow-lg">
+              <Plus className="w-5 h-5 text-white dark:text-ink-950" />
+            </div>
+          </NavLink>
 
-        <NavLink to="/ai-tools" className={({ isActive }) => `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-medium ${isActive ? 'text-ink-900 dark:text-amber-400' : 'text-ink-400'}`}>
-          <Sparkles className="w-5 h-5" />
-          AI
-        </NavLink>
+          <NavLink
+            to="/kanban"
+            className={({ isActive }) =>
+              `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-medium ${
+                isActive
+                  ? 'text-ink-900 dark:text-amber-400'
+                  : 'text-ink-400'
+              }`
+            }
+          >
+            <Kanban className="w-5 h-5" />
+            Board
+          </NavLink>
 
-      </div>
-    </nav>
+          <NavLink
+            to="/ai-tools"
+            className={({ isActive }) =>
+              `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-medium ${
+                isActive
+                  ? 'text-ink-900 dark:text-amber-400'
+                  : 'text-ink-400'
+              }`
+            }
+          >
+            <Sparkles className="w-5 h-5" />
+            AI
+          </NavLink>
+
+        </div>
+      </nav>
+    </>
   );
 }

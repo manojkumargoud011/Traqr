@@ -9,15 +9,13 @@ import JobDetails from './pages/JobDetails';
 import AllJobs from './pages/AllJobs';
 import RemindersPage from './pages/Reminders';
 import KanbanBoard from './pages/KanbanBoard';
-import AITools from './pages/aiTools';
+import AITools from './pages/AITools';
 import ResumeAnalyzer from './pages/ResumeAnalyzer';
 import InterviewPrep from './pages/InterviewPrep';
 import NetworkingTracker from './pages/NetworkingTracker';
 
-// ─── Layout ───────────────────────────────────────────────────────────────────
-
 function AppLayout() {
-  const { darkMode, user, authLoading, logout } = useJobs();
+  const { darkMode, user, authLoading, toggleDarkMode } = useJobs();
 
   useEffect(() => {
     darkMode
@@ -25,7 +23,6 @@ function AppLayout() {
       : document.documentElement.classList.remove('dark');
   }, [darkMode]);
 
-  // Show loading spinner while checking login
   if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-ink-50 dark:bg-ink-950">
@@ -37,14 +34,43 @@ function AppLayout() {
     );
   }
 
-  // Not logged in → show login page
   if (!user) return <Login />;
 
-  // Logged in → show full app
   return (
     <div className="min-h-screen bg-ink-50 dark:bg-ink-950 transition-colors duration-300">
+
+      {/* ── Top Navbar (Mobile + Desktop) ── */}
+<header className="md:hidden sticky top-0 z-50 bg-white dark:bg-ink-900 border-b border-ink-100 dark:border-ink-800 shadow-sm">
+  <div className="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
+
+    {/* Left — Logo */}
+    <div className="flex items-center gap-2.5">
+      <div className="w-8 h-8 rounded-xl bg-ink-900 dark:bg-amber-400 flex items-center justify-center">
+        <span className="text-white dark:text-ink-950 text-sm">💼</span>
+      </div>
+      <span className="font-display text-xl font-bold text-ink-900 dark:text-white">
+        Traqr
+      </span>
+    </div>
+
+    {/* Right — Dark Mode Button (Mobile Version) */}
+    <button
+      onClick={toggleDarkMode}
+      className="flex items-center gap-2 px-3 py-2 rounded-xl bg-ink-100 dark:bg-ink-800 border border-ink-200 dark:border-ink-700 text-ink-700 dark:text-amber-400 text-sm transition-all active:scale-95"
+    >
+      {darkMode ? '☀️' : '🌙'}
+    </button>
+
+  </div>
+</header>
+
+      {/* ── Main Layout ── */}
       <div className="flex">
+
+        {/* Desktop Sidebar */}
         <Navbar />
+
+        {/* Page Content */}
         <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 pb-24 md:pb-8">
           <div className="max-w-5xl mx-auto">
             <Routes>
@@ -68,13 +94,15 @@ function AppLayout() {
             </Routes>
           </div>
         </main>
+
       </div>
+
+      {/* Mobile Bottom Nav */}
       <MobileNav />
+
     </div>
   );
 }
-
-// ─── Root ─────────────────────────────────────────────────────────────────────
 
 export default function App() {
   return (
