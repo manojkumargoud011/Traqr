@@ -149,3 +149,28 @@ export const getDueReminders = (jobs) => {
     return rem <= today;
   });
 };
+// ─── Daily Streak ─────────────────────────────────────────────────────────────
+
+export const calculateStreak = (jobs) => {
+  if (!jobs.length) return 0;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  let streak = 0;
+  let checkDate = new Date(today);
+
+  while (true) {
+    const dateStr = checkDate.toISOString().slice(0, 10);
+    const hasApplication = jobs.some(j => j.date === dateStr);
+
+    if (hasApplication) {
+      streak++;
+      checkDate.setDate(checkDate.getDate() - 1);
+    } else {
+      break;
+    }
+  }
+
+  return streak;
+};

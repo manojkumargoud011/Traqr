@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Plus, Moon, Sun, Briefcase, Bell, Kanban, Sparkles, FileText, Users, Brain, Download, LogOut } from 'lucide-react';
+// import { LayoutDashboard, Plus, Moon, Sun, Briefcase, Bell, Kanban, Sparkles, FileText, Users, Brain, Download, LogOut } from 'lucide-react';
 import { useJobs } from '../context/JobContext';
 import { getDueReminders } from '../utils/helpers';
 import { exportToCSV } from '../utils/aiHelper';
 import { useMemo } from 'react';
+import { LayoutDashboard, Plus, Moon, Sun, Briefcase, Bell, Kanban, Sparkles, FileText, Users, Brain, Download, LogOut, User } from 'lucide-react';
 
 export default function Navbar() {
   const { darkMode, toggleDarkMode, jobs, dismissedReminders, logout, user } = useJobs();
@@ -202,18 +203,28 @@ export function MobileNav() {
           </NavLink>
 
           <NavLink
-            to="/ai-tools"
-            className={({ isActive }) =>
-              `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-medium ${
-                isActive
-                  ? 'text-ink-900 dark:text-amber-400'
-                  : 'text-ink-400'
-              }`
-            }
-          >
-            <Sparkles className="w-5 h-5" />
-            AI
-          </NavLink>
+  to="/ai-tools"
+  className={({ isActive }) =>
+    `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-medium ${
+      isActive ? 'text-ink-900 dark:text-amber-400' : 'text-ink-400'
+    }`
+  }
+>
+  <Sparkles className="w-5 h-5" />
+  AI
+</NavLink>
+
+<NavLink
+  to="/profile"
+  className={({ isActive }) =>
+    `flex flex-col items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-medium ${
+      isActive ? 'text-ink-900 dark:text-amber-400' : 'text-ink-400'
+    }`
+  }
+>
+  <User className="w-5 h-5" />
+  Profile
+</NavLink>
 
         </div>
       </nav>

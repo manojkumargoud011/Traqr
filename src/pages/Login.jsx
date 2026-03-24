@@ -36,13 +36,29 @@ export default function Login() {
   };
 
   const handleGoogle = async () => {
-    setError('');
-    try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (err) {
-      setError('Google sign-in failed. Try again.');
+  setError('');
+  setLoading(true);
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    console.log('Google login success:', result.user.email);
+  } catch (err) {
+    console.error('Google login error code:', err.code);
+    console.error('Google login error message:', err.message);
+
+    if (err.code === 'auth/popup-blocked') {
+      setError('Popup was blocked. Please allow popups for this site.');
+    } else if (err.code === 'auth/popup-closed-by-user') {
+      setError('Sign in was cancelled. Please try again.');
+    } else if (err.code === 'auth/unauthorized-domain') {
+      setError('This domain is not authorized. Please contact support.');
+    } else if (err.code === 'auth/network-request-failed') {
+      setError('Network error. Check your internet connection.');
+    } else {
+      setError(`Sign in failed: ${err.message}`);
     }
-  };
+  }
+  setLoading(false);
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-ink-50 dark:bg-ink-950 p-4">

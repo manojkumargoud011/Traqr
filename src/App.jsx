@@ -113,6 +113,7 @@
 //     </BrowserRouter>
 //   );
 // }
+import Profile from './pages/Profile';
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { JobProvider, useJobs } from './context/JobContext';
@@ -211,6 +212,7 @@ function AppLayout() {
               <Route path="/resume" element={<ResumeAnalyzer />} />
               <Route path="/interview" element={<InterviewPrep />} />
               <Route path="/networking" element={<NetworkingTracker />} />
+              <Route path="/profile" element={<Profile />} />
               
               {/* 404 Page */}
               <Route

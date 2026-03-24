@@ -21,11 +21,34 @@ const CompanyAvatar = ({ company }) => {
 // ─── Status Badge ──────────────────────────────────────────────────────────────
 
 export const StatusBadge = ({ status }) => {
-  const cfg = STATUS_CONFIG[status] || STATUS_CONFIG.Applied;
+  const colors = {
+    Applied:     'bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300',
+    Shortlisted: 'bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-300',
+    Interview:   'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300',
+    Offer:       'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-300',
+    Rejected:    'bg-rose-100 text-rose-700 dark:bg-rose-900/20 dark:text-rose-300',
+  };
+
+  const dots = {
+    Applied:     'bg-blue-500',
+    Shortlisted: 'bg-amber-500',
+    Interview:   'bg-yellow-500',
+    Offer:       'bg-emerald-500',
+    Rejected:    'bg-rose-500',
+  };
+
+  const emojis = {
+    Applied:     '📤',
+    Shortlisted: '⭐',
+    Interview:   '🎤',
+    Offer:       '🎉',
+    Rejected:    '❌',
+  };
+
   return (
-    <span className={`status-badge ${cfg.color}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
-      {cfg.label}
+    <span className={`status-badge ${colors[status] || colors.Applied}`}>
+      <span className={`w-1.5 h-1.5 rounded-full ${dots[status] || dots.Applied}`} />
+      {emojis[status]} {status}
     </span>
   );
 };

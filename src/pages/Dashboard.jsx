@@ -11,6 +11,7 @@ import {
   buildWeeklyData,
   buildMonthlyData,
   buildStatusPieData,
+  calculateStreak,
 } from '../utils/helpers';
 import {
   generateTips,
@@ -27,6 +28,7 @@ export default function Dashboard() {
   const pieData = useMemo(() => buildStatusPieData(stats), [stats]);
   const suggestedRoles = useMemo(() => suggestRoles(jobs), [jobs]);
   const recentJobs = useMemo(() => jobs.slice(0, 4), [jobs]);
+  const streak = useMemo(() => calculateStreak(jobs), [jobs]);
 
   // ── AI Tips State ──────────────────────────────────────────────────────────
   const [tips, setTips] = useState([]);
@@ -92,7 +94,7 @@ export default function Dashboard() {
       <Reminder />
 
       {/* Stats */}
-      <DashboardStats stats={stats} />
+      <DashboardStats stats={stats} streak={streak} />
 
       {/* Charts Row 1 */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
